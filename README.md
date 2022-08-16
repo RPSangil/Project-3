@@ -14,10 +14,10 @@
 
 ## Group Members
 
-Matt Lewis (ML789)
-Suraj Shrestha ()
-Raelyn Sangil (RPSangil)
-Thomas Gosper ()
+- Matt Lewis (ML789)
+- Suraj Shrestha ()
+- Raelyn Sangil (RPSangil)
+- Thomas Gosper ()
 
 ## Introduction
 
