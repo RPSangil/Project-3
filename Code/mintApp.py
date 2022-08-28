@@ -98,7 +98,7 @@ st.header("Welcome to the CarbCred Minting System")
 st.write("Choose an account to recieve the new CarbCreds")
 accounts = w3.eth.accounts
 recipient_address = st.selectbox("Select Account", options=accounts)
-# entre number of CarbCreds to mint
+# enter number of CarbCreds to mint
 mint_quantity = st.text_input("Enter the number of CarbCreds to Mint")
 st.markdown("---")
 
@@ -112,15 +112,17 @@ st.write("Enter Authorised Minter's Credentials")
 if check_password():
     st.header("Credentials Approved!")
     if st.button(f"Confirm Mint {mint_quantity} CarbCreds"):
-        contract.functions.mint(recipient_address, int(mint_quantity * 10000))
+        contract.functions.mint(bytes(recipient_address, 'utf-8'), int(mint_quantity * 10000))
         
         
-        tx_hash = contract.functions.mint(recipient_address, int(mint_quantity * 10000)
-        ).transact({'from': address, 'gas': 30000})
-        receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        # tx_hash = contract.functions.mint(recipient_address, int(mint_quantity * 10000)
+        # ).transact({'from': recipient_address, 'gas': 30000})
+        # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+
+
         st.markdown("---")
         st.header(f"{mint_quantity} new CarbCreds Registerd to {recipient_address}")
-
+        st.markdown("---")
 
 
 else:
@@ -143,6 +145,8 @@ else:
     #     token_json['image']
     # ).transact({'from': address, 'gas': 1000000})
     # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+
+
     # st.write("Transaction receipt mined:")
     # st.write(dict(receipt))
     # st.write("You can view the pinned metadata file with the following IPFS Gateway Link")
@@ -185,6 +189,8 @@ else:
 #         artwork_uri,
 #         token_json['image']
 #     ).transact({'from': address, 'gas': 1000000})
+
+
 #     receipt = w3.eth.waitForTransactionReceipt(tx_hash)
 #     st.write("Transaction receipt mined:")
 #     st.write(dict(receipt))
