@@ -6,10 +6,10 @@ import "https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v2.5
 contract CarbonCredit is ERC20, ERC20Detailed {
     address payable owner;
 
-    modifier onlyOwner {
-        require(msg.sender == owner, "You do not have permission to mint these tokens!");
-        _;
-    }
+//    modifier onlyOwner {
+//        require(msg.sender == owner, "You do not have permission to mint these tokens!");
+//        _;
+//    }
 
     constructor(uint initial_supply) ERC20Detailed("CarbCred", "CCD", 1) public {
         owner = msg.sender;
