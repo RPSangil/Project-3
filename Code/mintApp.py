@@ -112,12 +112,13 @@ st.write("Enter Authorised Minter's Credentials")
 if check_password():
     st.header("Credentials Approved!")
     if st.button(f"Confirm Mint {mint_quantity} CarbCreds"):
-        contract.functions.mint(bytes(recipient_address, 'utf-8'), int(mint_quantity * 10000))
+        
+        contract.functions.mint(recipient_address, (int(mint_quantity))).transact({'from': recipient_address, 'gas': 3000000})
         
         
-        tx_hash = contract.functions.mint(recipient_address, int(mint_quantity * 10000)
-        ).transact({'from': recipient_address, 'gas': 30000})
-        receipt = w3.eth.waitForTransactionReceipt(tx_hash)
+        # tx_hash = contract.functions.mint(recipient_address, int(mint_quantity * 10000)
+        # ).transact({'from': recipient_address, 'gas': 30000})
+        # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
 
 
         st.markdown("---")
