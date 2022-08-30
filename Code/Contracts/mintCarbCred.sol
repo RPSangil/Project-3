@@ -11,7 +11,7 @@ contract CarbonCredit is ERC20, ERC20Detailed {
 //        _;
 //    }
 
-    constructor(uint initial_supply) ERC20Detailed("CarbCred", "CCD", 1) public {
+    constructor(uint initial_supply) ERC20Detailed("CarbCred", "CCD", 0) public {
         owner = msg.sender;
         _mint(owner, initial_supply);
     }

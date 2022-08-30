@@ -110,17 +110,14 @@ st.markdown("---")
 
 st.write("Enter Authorised Minter's Credentials")
 
-if check_password():
+if check_password(): # Check That the user is authorised to mint
     st.header("Credentials Approved!")
+    # use confirmation button to proceed with minting
     if st.button(f"Confirm Mint {mint_quantity} CarbCreds"):
         
+        # perform minting
         contract.functions.mint(recipient_address, (int(mint_quantity))).transact({'from': recipient_address, 'gas': 3000000})
         
-        
-        # tx_hash = contract.functions.mint(recipient_address, int(mint_quantity * 10000)
-        # ).transact({'from': recipient_address, 'gas': 30000})
-        # receipt = w3.eth.waitForTransactionReceipt(tx_hash)
-
         st.markdown("---")
         st.header(f"{mint_quantity} new CarbCreds Registerd to {recipient_address}")
         st.markdown("---")
