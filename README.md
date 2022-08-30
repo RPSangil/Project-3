@@ -64,9 +64,9 @@ This project has also explored the use of Multi-signature contracts which will b
 
 ### Voting on Carbon Credit Transactions
 
-In blockchain-based applications, activities might need to be authorised by multiple blockchain addresses. A transaction could indicate multi-party authorisation using a digital signature scheme that allows a group of addresses to sign the transaction. Such a signature is known as a multisignature. Depending on the chosen multisignature algorithm, we can enforce that the transaction is signed by all or a subset of the authorised addresses. A multisignature mechanism can be designed to require m out of n private keys to authorise a transaction, in which m is the threshold of authorisation (2 ≤ m ≤ n). A smart contract’s owner/manager can pre-define a group of addresses that can authorise a transaction and set the minimal number of authorisations required to approve a payment. [<sup>4</sup>](#reference-list)
+In blockchain-based applications, activities might need to be authorised by multiple blockchain addresses. A transaction could indicate multi-party authorisation using a digital signature scheme that allows a group of addresses to sign the transaction. Such a signature is known as a multisignature. Depending on the chosen multisignature algorithm, we can enforce that the transaction is signed by all or a subset of the authorised addresses. A multisignature mechanism can be designed to require m out of n private keys to authorise a transaction, in which m is the threshold of authorisation (2 ≤ m ≤ n). 
 
-This project has explored the use of [Multi-signature contract](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Code/Contracts/5-11%20Multisig%20wallet.sol) as a meants of voting on the approval of transactions. Enabling companies to vote on transactions for CarbCreds can helo to protect them from corporate espionage and financial fraud.
+A smart contract’s owner/manager can pre-define a group of addresses that can authorise a transaction and set the minimal number of authorisations required to approve a payment. [<sup>4</sup>](#reference-list) This project has explored the use of [Multi-signature contract](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Code/Contracts/5-11%20Multisig%20wallet.sol) as a meants of voting on the approval of transactions. Enabling companies to vote on transactions for CarbCreds can helo to protect them from corporate espionage and financial fraud.
 
 Below are some iamges of the contract functioning.
 
@@ -93,7 +93,7 @@ We successfully deposited 1 ether into the cotnract.
 
 <ins>Submit Transaction Function Working</ins>
 
-![Submit Transaction Function Working]https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_submitTransaction_working.PNG)
+![Submit Transaction Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_submitTransaction_working.PNG)
 
 The submitTransaction function was used to submit a transfer of the 1 ether to an address outside of the Multi-signature contract.
 
