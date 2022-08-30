@@ -43,38 +43,38 @@ def load_contract():
 contract = load_contract()
 
 ################################################################################
-# Password Function
+# Password Function For Buyer
 ################################################################################
 # Source: https://docs.streamlit.io/knowledge-base/deploy/authentication-without-sso
 
-def check_password(user_ID, pass_ID, pasword_set):
+def check_password_buyer(password_set):
     """Returns `True` if the user had a correct password."""
 
-    def password_entered(user_ID, pass_ID, pasword_set):
+    def password_entered():
         """Checks whether a password entered by the user is correct."""
         if (
-            st.session_state[user_ID] in st.secrets[pasword_set]
-            and st.session_state[pass_ID]
-            == st.secrets[pasword_set][st.session_state[user_ID]]
+            st.session_state["buy_username"] in st.secrets[password_set]
+            and st.session_state["buy_password"]
+            == st.secrets[password_set][st.session_state["buy_username"]]
         ):
-            st.session_state["password_correct"] = True
-            del st.session_state[pass_ID]  # don't store username + password
-            del st.session_state[user_ID]
+            st.session_state["buy_password_correct"] = True
+            del st.session_state["buy_password"]  # don't store username + password
+            del st.session_state["buy_username"]
         else:
-            st.session_state["password_correct"] = False
+            st.session_state["buy_password_correct"] = False
 
-    if "password_correct" not in st.session_state:
+    if "buy_password_correct" not in st.session_state:
         # First run, show inputs for username + password.
-        st.text_input("Username", on_change=password_entered(user_ID, pass_ID, pasword_set), key = user_ID)
+        st.text_input("Username", on_change=password_entered, key="buy_username")
         st.text_input(
-            "Password", type="password", on_change=password_entered(user_ID, pass_ID, pasword_set), key = pass_ID
+            "Password", type="password", on_change=password_entered, key="buy_password"
         )
         return False
-    elif not st.session_state["password_correct"]:
+    elif not st.session_state["buy_password_correct"]:
         # Password not correct, show input + error.
-        st.text_input("Username", on_change=password_entered(user_ID, pass_ID, pasword_set), key = user_ID)
+        st.text_input("Username", on_change=password_entered, key="buy_username")
         st.text_input(
-            "Password", type="password", on_change=password_entered(user_ID, pass_ID, pasword_set), key = pass_ID
+            "Password", type="password", on_change=password_entered, key="buy_password"
         )
         st.error("😕 User not known or password incorrect")
         return False
@@ -86,6 +86,47 @@ def check_password(user_ID, pass_ID, pasword_set):
 # if check_password():
 #     st.write("Here goes your normal Streamlit app...")
 #     st.button("Click me")
+
+################################################################################
+# Password Function For Seller
+################################################################################
+# Source: https://docs.streamlit.io/knowledge-base/deploy/authentication-without-sso
+
+def check_password_seller(password_set):
+    """Returns `True` if the user had a correct password."""
+
+    def password_entered():
+        """Checks whether a password entered by the user is correct."""
+        if (
+            st.session_state["sell_username"] in st.secrets[password_set]
+            and st.session_state["sell_password"]
+            == st.secrets[password_set][st.session_state["sell_username"]]
+        ):
+            st.session_state["sell_password_correct"] = True
+            del st.session_state["sell_password"]  # don't store username + password
+            del st.session_state["sell_username"]
+        else:
+            st.session_state["password_correct"] = False
+
+    if "sell_password_correct" not in st.session_state:
+        # First run, show inputs for username + password.
+        st.text_input("Username", on_change=password_entered, key="sell_username")
+        st.text_input(
+            "Password", type="password", on_change=password_entered, key="sell_password"
+        )
+        return False
+    elif not st.session_state["sell_password_correct"]:
+        # Password not correct, show input + error.
+        st.text_input("Username", on_change=password_entered, key="sell_username")
+        st.text_input(
+            "Password", type="password", on_change=password_entered, key="sell_password"
+        )
+        st.error("😕 User not known or password incorrect")
+        return False
+    else:
+        # Password correct.
+        return True
+
 
 ################################################################################
 # Set up def send_transaction function
@@ -125,9 +166,8 @@ def send_transaction(w3, account, to, ether_value):
 # Tile info and Welcome
 st.title("A A C C")
 st.header("Australian Authority of Carbon Credits")
-st.image(Image.open('../Images/claudio-testa--SO3JtE3gZo-unsplash.jpg'))
+st.image(Image.open('../Images/cc_transfer_image.jpg'))
 st.header("Welcome to the CarbCred B2B Trading System")
-
 
 ################################################################################
 # Select Accounts and display balance
@@ -150,6 +190,9 @@ st.markdown("---")
 # select Buyer account
 accounts = w3.eth.accounts
 buyer_address = st.selectbox("Buyer's Account", options=accounts)
+# Enter Buyer Privet address to enable the ETH transfer
+buyer_private_key = st.text_input("Enter Buyer Private Key")
+
 # fetch and display balance
 # ETH
 buyer_wei_balance = w3.eth.get_balance(buyer_address)
@@ -193,27 +236,27 @@ else:
 
 st.subheader("Confirm Buyer and Seller Approval")
 
-# # Comfirm Company names and link their passwords
-# seller_company = accounts.index(seller_address)
-# seller_password_set = "COMPANY " + str((seller_company + 1))
+# Comfirm Company from the accounts selected
+seller_company = accounts.index(seller_address)
+seller_password_set = "COMPANY " + str((seller_company + 1))
 
-# buyer_company = accounts.index(buyer_address)
-# buyer_password_set = "COMPANY " + str((buyer_company + 1))
+buyer_company = accounts.index(buyer_address)
+buyer_password_set = "COMPANY " + str((buyer_company + 1))
 
-# # Enter Password details
-# st.write(f"Enter Seller's Credentials: {seller_password_set}")
-# seller_approved = check_password("SUser", "SPass", seller_password_set )
-# if seller_approved:
-#     st.subheader(f"{seller_password_set} APPROVED!!")
+# Enter Password details
+st.write(f"Enter Seller's Credentials: {seller_password_set}")
+seller_approved = check_password_seller(seller_password_set)
+if seller_approved:
+    st.subheader(f"{seller_password_set} APPROVED!!")
 
-# st.write(f"Enter Buyer's Credentials: {buyer_password_set}")
-# buyer_approved = check_password("BUser", "BPass", buyer_password_set)
-# if buyer_approved:
-#     st.subheader(f"{buyer_password_set} APPROVED!!")
+st.write(f"Enter Buyer's Credentials: {buyer_password_set}")
+buyer_approved = check_password_buyer(buyer_password_set)
+if buyer_approved:
+    st.subheader(f"{buyer_password_set} APPROVED!!")
 
 
-buyer_approved = True
-seller_approved = True
+# buyer_approved = True
+# seller_approved = True
 
 st.markdown("---")
 
@@ -225,12 +268,8 @@ st.markdown("---")
 # Confirm requirements met for trade to proceed
 # True * True * True = True //// True * True * False = False
 
-transaction_complete = False
-
-st.write(transaction_complete)
-
 if accounts_approved * seller_approved * buyer_approved * trade_value_approved:
-    if st.button("Action Trade", disabled = transaction_complete):
+    if st.button("Action Trade"):
 
         #### Transfer the CCD from Seller to Buyer
         # send CCD
@@ -240,11 +279,8 @@ if accounts_approved * seller_approved * buyer_approved * trade_value_approved:
 
         #### Transfer the ETH from Buyer to the Seller
 
-        account = Account.privateKeyToAccount("fc72b370af79ceb3b1ad466f01dfd3c0f553de9398507f92078e4d6f5375cc98")
+        account = Account.privateKeyToAccount(buyer_private_key)
         send_transaction(w3, account, buyer_address, ETH_quantity)
-
-        st.write(f"{account.address}")
-
 
         ###########
         # Final Balances
@@ -269,8 +305,6 @@ if accounts_approved * seller_approved * buyer_approved * trade_value_approved:
         buyer_CCD_balance = contract.functions.balanceOf(buyer_address).call()
         st.write(f"Buyer CCD Balance: {buyer_CCD_balance}")
 
-        # Disable button
-        transaction_complete = True
 
 else:
     st.write("Error with request, review entered data")
