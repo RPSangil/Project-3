@@ -200,7 +200,7 @@ buyer_ETH_balance = w3.fromWei(buyer_wei_balance, "ether")
 st.write(f"Buyer ETH Balance: {buyer_ETH_balance}")
 # CCD
 buyer_CCD_balance = contract.functions.balanceOf(buyer_address).call()
-st.write(f"Seller CCD Balance: {buyer_CCD_balance}")
+st.write(f"Buyer CCD Balance: {buyer_CCD_balance}")
 
 # confirm accounts are not the same account
 if seller_address == buyer_address:
