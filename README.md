@@ -12,7 +12,6 @@
     * [Trading Carbon Credits between companies](#trading-carbon-credits-between-companies)
     * [Voting on Carbon Credit Transactions](#voting-on-carbon-credit-transactions)
 - [Future Opportunities Given Time and Resources](#future-opportunities-given-time-and-resources)
-    * [Opportunities for Furture Developement](#opportunities-for-furture-developement)
     * [Useful Resources for Future Develpoment](#useful-resources-for-future-develpoment)
 - [Reference list](#reference-list)
 
@@ -33,12 +32,14 @@ With the up coming legislation changes that will enforce companies to conduct bu
 
 ## Our Goal
 
-This project aims to produce the following as a minimal viable product:
+A Government Organisation has approached 3 Squared for a product solution regarding upcoming developments of the Carbon Neutral Agreement made at COP26.
 
-1. Procude an app and smart contract that mints CarbCreds and facilitates the transfer of these CarbCreds to a wallet. Once a Carbon Capture Company is ready to claim CarbCreds for the cardbon they have captured from the atmosphere, the Governement Organisation would then be able to transfer the minted CarbCreds to the Carbon Capture Company.
-2. Produce an app that facilitates the purchase and transfers or CarbCreds. This would be used by Carbon Capture Companies and Carbon Producing Companies.
+This project aims to:
 
-This project has also explored the use of Multi-signature contracts which will be described in more detail [below](#voting-on-carbon-credit-transactions).
+1. Produce a smart contract in which Carbon Credits are minted by the Government Organisation only. 
+2. Produce a smart contract that facilitates a Carbon Capture Company to purchase Carbon Credits from the government for declaration of carbon.
+3. Produce a smart contract that facilitates the purchase of Carbon Credits for funds.
+4. Produce a smart contract that facilitates company board members to vote on where a Carbon Credit transaction shold be approved or not.
 
 [Back to Table of Contents](#Table-of-Contents)
 
@@ -49,6 +50,49 @@ This project has also explored the use of Multi-signature contracts which will b
 [Back to Table of Contents](#Table-of-Contents)
 
 ## Parts of the Project
+
+### Project setup
+To set up this project.
+
+
+Importing tokens into Metamask
+1. Ensure MetaMask and Ganache are linked
+* To ensure that the mintApp and transferApp work effectively, it is important to ensure that Ganache is showing as a Network in MetaMask as shown below:
+![Ganache in Network]("C:\Users\thoma\Bootcamp\Project-3\Images\Ganache linked with metamask.png")
+* To do this, in the drop down box on the top right of MetaMask webpage, selected add network. Using the details displayed in Genache, fill in the New RPC URL, Chain ID and provide a currency symbol as displayed below:
+![Ganache linking in Metamask]("C:\Users\thoma\Bootcamp\Project-3\Images\Ganache linking with Metamask.png")
+
+2. Import Ganache Account
+* Once Metamask is added, import all Genache accounts using the private key to MetaMask. This will allow for transacting across multiple accounts in the environment.
+
+* Within MetaMask, click on the coloured circle in the top right of MetaMask and click "Import Account". This will bring you to a page where MetaMask asks for a Private key to import an account.
+![Circle in Metamask]("C:\Users\thoma\Bootcamp\Project-3\Images\Circle in MM.png")
+
+* In Ganache, find the key icon that is to the right of the first account and click on it. Copy the Private Key as shown below. 
+![Ganache 1]("C:\Users\thoma\Bootcamp\Project-3\Images\Ganache 1.png")
+![Ganache 2]("C:\Users\thoma\Bootcamp\Project-3\Images\Adding a MM Account.png")
+
+* Paste private key into the section in MetaMask and hit "Import". MetaMask will then import this Ganache Account. For the purpose of this exercise, we have renamed the accounts for similicity. By clicking on the three dots next to "Account X", click on "Account Details" and rename the account. We have named them as "G Acc X" as shown below. 
+![Ganache 3]("C:\Users\thoma\Bootcamp\Project-3\Images\Import Ganache Acc.png")
+
+3. Import Tokens (CCD)
+* Once MetaMask has been loaded with your Genache accounts, its now time to import CarbonCred tokens (CCD). 
+* To do this, first open the solidity code file in Remix. Compile and deploy contract and check for the green tick at the bottom of the page as shown below:
+
+* Once the contract has been deployed in Remix, on the lefthand side of Remix, the contract will now show under deployed contract. Click on the copy button below the "Deployed Contact" title as seen below. This is will allow for linking the smart contract with MetaMask and Genache. 
+![RemixCode]("C:\Users\thoma\Bootcamp\Project-3\Images\Remix Code.png")
+* The next step will need to be completed for each of your Genache accounts in MetaMask. First, click on "Import Tokens" shown below. 
+![Import Tokens]("C:\Users\thoma\Bootcamp\Project-3\Images\Import tokens 1.png")
+* Paste the previous copied Solidity Contract Address that was copied from Remix into the first box. Type "CCD" for CarbonCredit into the token symbol box. Leave Token Decimal blank and then click Add Custom Token.
+![Import Tokens 2]("C:\Users\thoma\Bootcamp\Project-3\Images\Import tokens 2.png")
+![Import Tokens 3]("C:\Users\thoma\Bootcamp\Project-3\Images\Import tokens 3.png")
+* You should now see CCD in your respective account. It is important you replicate these steps for Importing Tokens (CCD) for each account within your MetaMask as this will help keep record of which account holds how many CCDs. 
+![Import Tokens 4]("C:\Users\thoma\Bootcamp\Project-3\Images\Import tokens 4.png")
+
+
+### Setting up LogIn Credentials for CarbonCred site
+Both streamlit apps require the use of a username and password for the validation process. To set up the validation process, create a login details in the secrets.toml file using the same layout as demonstrated below. To run this code, it is not essentual as you can use the existing login details, however it is good practice. 
+
 
 ### Minting of Carbon Credits
 
@@ -64,80 +108,17 @@ This project has also explored the use of Multi-signature contracts which will b
 
 ### Voting on Carbon Credit Transactions
 
-In blockchain-based applications, activities might need to be authorised by multiple blockchain addresses. A transaction could indicate multi-party authorisation using a digital signature scheme that allows a group of addresses to sign the transaction. Such a signature is known as a multisignature. Depending on the chosen multisignature algorithm, we can enforce that the transaction is signed by all or a subset of the authorised addresses. A multisignature mechanism can be designed to require m out of n private keys to authorise a transaction, in which m is the threshold of authorisation (2 ≤ m ≤ n). 
-
-A smart contract’s owner/manager can pre-define a group of addresses that can authorise a transaction and set the minimal number of authorisations required to approve a payment. [<sup>4</sup>](#reference-list) This project has explored the use of [Multi-signature contract](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Code/Contracts/5-11%20Multisig%20wallet.sol) as a meants of voting on the approval of transactions. Enabling companies to vote on transactions for CarbCreds can helo to protect them from corporate espionage and financial fraud.
-
-Below are some iamges of the contract functioning.
-
-<ins>Compiled without Errors</ins>
-
-![Compiled](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_compiled.PNG)
-
-This contract was compiled using 0.5.17+commit.d19bba13 with no errors.
-
-<ins>Assigned Addresses and Approvals Required</ins>
-
-![Assigned Addresses and Approvals Required](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_assign_owners_and_2ApprovalsRequired.PNG)
-
-For this demontration, 2 factors were indicated when deploying the contract:
-
-1. Multiple address (owners). For the demonstration, 3 addresses were chosen.
-2. Number of approvals required for the transaction to execute. For the demonstration, 2 (the majority) was indicated.
-
-<ins>Deposit Function Working</ins>
-
-![Deposit Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_Deposit_function_working.PNG)
-
-We successfully deposited 1 ether into the cotnract.
-
-<ins>Submit Transaction Function Working</ins>
-
-![Submit Transaction Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_submitTransaction_working.PNG)
-
-The submitTransaction function was used to submit a transfer of the 1 ether to an address outside of the Multi-signature contract.
-
-<ins>Display Amount of Approvals Required Working</ins>
-
-![Call Amount of Approvals Required Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_display_approvalRequired.PNG)
-
-The call shows that 2 approvals are required for the transaction to execute.
-
-<ins>Approve Transaction Function Working</ins>
-
-![Approve Transaction Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_ApproveTransaction_working.PNG)
-
-One of the assigned addresses was used to approve the transaction.
-
-<ins>Call to Check if an Owner has Approved a Transaction Working</ins>
-
-![Call to Check if an Owner has Approved a Transaction Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_isApproved_working.PNG)
-
-The call shows which address was used and confirmed that approval has been given by this address (true).
-
-<ins>Revoke Approval of Transaction Function Working</ins>
-
-![Revoke Approval of Transaction Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_RevokeApproval_working.PNG)
-
-The Revoke approval function is working and approval was then regiven by the same address.
-
-<ins>Execute Transaction after Aprovals Function Working</ins>
-
-![Execute Transaction after Aprovals Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_ExecuteTransaction_working.PNG)
-
-Once enough approval were made, the transaction was able to execute.
+`insert meat of the project here`
 
 [Back to Table of Contents](#Table-of-Contents)
 
 ## Future Opportunities Given Time and Resources
 
-Given more time, the project would have explored and implemented a front end that would enable users to access the Multi-signature contract via an app.
+`insert list of potential next steps for the project`
 
-### Opportunities for Furture Developement
+`insert additional questions to research if given more time`
 
-- `Confirm with team`
-
-### Useful Resources for Future Developement
+### Useful Resources for Future Develpoment
 
 - [ERC20 EIP](https://eips.ethereum.org/EIPS/eip-20)
 - [ERC20 info](https://ethereum.org/en/developers/docs/standards/tokens/erc-20/)
@@ -152,11 +133,6 @@ Given more time, the project would have explored and implemented a front end tha
 - [<sup>1</sup> COP26: What was agreed at the Glasgow climate conference?](https://www.bbc.com/news/science-environment-56901261)
 - [<sup>2</sup> Australia Welcomes Positive Outcomes at COP26 ](https://www.minister.industry.gov.au/ministers/taylor/media-releases/australia-welcomes-positive-outcomes-cop26)
 - [<sup>3</sup> Climate Solutions Fund: How you can benefit](https://www.cleanenergyregulator.gov.au/csf/how-you-can-benefit/Pages/how-you-can-benefit.aspx#:~:text=By%20running%20a%20project%2C%20you,gas%20emissions%20stored%20or%20avoided)
-- [<sup>4</sup> CSIRO: Multiple Authorisation (aka., Multisignature)](https://research.csiro.au/blockchainpatterns/general-patterns/security-patterns/multiple-authorization/)
-- [Image used in Minting App Source](https://unsplash.com/photos/-SO3JtE3gZo)
-- [Passwords Code Source](https://docs.streamlit.io/knowledge-base/deploy/authentication-without-sso)
-- [Multi-Sig Wallet Code Source](https://solidity-by-example.org/app/multi-sig-wallet/)
-- [Image for Transfer App Source]()
 
 [Back to Table of Contents](#Table-of-Contents)
 
