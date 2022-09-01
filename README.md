@@ -101,6 +101,8 @@ Both streamlit apps require the use of a username and password for the validatio
 
 ### Minting of CarbCreds
 
+https://user-images.githubusercontent.com/101629446/187858890-c87342a7-754f-4282-86fc-2c52a1cb6e39.mov
+
 [Minting Screen Capture video](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Videos/Minting_Screencapture.mov)
 
 ### Trading CarbCreds 
