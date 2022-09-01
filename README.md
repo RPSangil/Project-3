@@ -140,7 +140,7 @@ We successfully deposited 1 ether into the cotnract.
 
 <ins>Submit Transaction Function Working</ins>
 
-![Submit Transaction Function Working]https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_submitTransaction_working.PNG)
+![Submit Transaction Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_submitTransaction_working.PNG)
 
 The submitTransaction function was used to submit a transfer of the 1 ether to an address outside of the Multi-signature contract.
 
