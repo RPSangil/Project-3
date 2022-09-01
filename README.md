@@ -1,4 +1,4 @@
-# Project-3: Carbon Credits - Blockchain
+# Project-3: CarbCreds Token 
 **FinTech Group Assessment 3**
 
 ### Table of Contents
@@ -7,10 +7,10 @@
 - [Our Goal](#our-goal)
 - [Dependencies/Libraries](#dependencieslibraries)
 - [Parts of the Project](#parts-of-the-project)
-    * [Minting of Carbon Credits](#minting-of-carbon-credits)
-    * [Buying Carbon Credits from Government](#buying-carbon-credits-from-government)
-    * [Trading Carbon Credits between companies](#trading-carbon-credits-between-companies)
-    * [Voting on Carbon Credit Transactions](#voting-on-carbon-credit-transactions)
+    * [Project Setup](#project-setup)
+    * [Minting of CarbCreds](#minting-of-carbcreds)
+    * [Trading CarbCreds](#trading-carbcreds)
+    * [Voting on CarbCred Transactions](#voting-on-carbcred-transactions)
 - [Future Opportunities Given Time and Resources](#future-opportunities-given-time-and-resources)
     * [Useful Resources for Future Develpoment](#useful-resources-for-future-develpoment)
 - [Reference list](#reference-list)
@@ -26,97 +26,164 @@
 
 At the UN Glasgow climate conference, a new global agreement - the Glasgow Climate Pact - was reached at the COP26 summit.[<sup>1</sup>](#reference-list) This agreement will set the tone for the global agenda on climate change for the next decade and Australia has modified their previous target that included net zero emissions by 2050 to achieve up to 35 per cent reduction by 2030.[<sup>2</sup>](#reference-list)
 
-With the up coming legislation changes that will enforce companies to conduct business in a carbon neutral way, a whole new industry has begun to bloom. This industry utilizes carbon capture technology to provides carbon offsetting as a service to other companies. A new form of fungible token has emerged, Carbon Credits.[<sup>3</sup>](#reference-list)
+With the up coming legislation changes that will enforce companies to conduct business in a carbon neutral way, a whole new industry has begun to bloom. This industry utilizes carbon capture technology to provides carbon offsetting as a service to other companies. A new form of fungible token has emerged, CarbCreds.[<sup>3</sup>](#reference-list)
 
 [Back to Table of Contents](#Table-of-Contents)
 
 ## Our Goal
 
-A Government Organisation has approached 3 Squared for a product solution regarding upcoming developments of the Carbon Neutral Agreement made at COP26.
+This project aims to develop:
 
-This project aims to:
-
-1. Produce a smart contract in which Carbon Credits are minted by the Government Organisation only. 
-2. Produce a smart contract that facilitates a Carbon Capture Company to purchase Carbon Credits from the government for declaration of carbon.
-3. Produce a smart contract that facilitates the purchase of Carbon Credits for funds.
-4. Produce a smart contract that facilitates company board members to vote on where a Carbon Credit transaction shold be approved or not.
-
-[Back to Table of Contents](#Table-of-Contents)
-
-## Dependencies/Libraries
-
-`insert list of libraries or technologies necessary to be installed or used for this project`
-
-[Back to Table of Contents](#Table-of-Contents)
+1. A smart contract based crypto token to represent a value of captured carbon in the form of CarbCreds.
+2. A minting application to allow authorises governing personnel to mint and distribute CardCreds as rewards for captured carbon.
+3. A transfer application to allow business to bussiness trading of CarbCreds.
+3. A multi-signature smart contract that allows voting by company directors to approve a transaction.
 
 ## Parts of the Project
 
 ### Project setup
+
 To set up this project.
 
-
-Importing tokens into Metamask
+<ins>Importing tokens into Metamask</ins>
 1. Ensure MetaMask and Ganache are linked
-* To ensure that the mintApp and transferApp work effectively, it is important to ensure that Ganache is showing as a Network in MetaMask as shown below:
-![Ganache in Network]("C:\Users\thoma\Bootcamp\Project-3\Images\Ganache linked with metamask.png")
-* To do this, in the drop down box on the top right of MetaMask webpage, selected add network. Using the details displayed in Genache, fill in the New RPC URL, Chain ID and provide a currency symbol as displayed below:
-![Ganache linking in Metamask]("C:\Users\thoma\Bootcamp\Project-3\Images\Ganache linking with Metamask.png")
+- To ensure that the mintApp and transferApp work effectively, it is important to ensure that Ganache is showing as a Network in MetaMask as shown below:
+
+![Ganache in Network](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Ganache%20linked%20with%20metamask.png)
+
+- To do this, in the drop down box on the top right of MetaMask webpage, selected add network. Using the details displayed in Genache, fill in the New RPC URL, Chain ID and provide a currency symbol as displayed below:
+
+![Ganache linking in Metamask](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Ganache%20linking%20with%20Metamask.png)
 
 2. Import Ganache Account
-* Once Metamask is added, import all Genache accounts using the private key to MetaMask. This will allow for transacting across multiple accounts in the environment.
+- Once Metamask is added, import all Genache accounts using the private key to MetaMask. This will allow for transacting across multiple accounts in the environment.
 
-* Within MetaMask, click on the coloured circle in the top right of MetaMask and click "Import Account". This will bring you to a page where MetaMask asks for a Private key to import an account.
-![Circle in Metamask]("C:\Users\thoma\Bootcamp\Project-3\Images\Circle in MM.png")
+- Within MetaMask, click on the coloured circle in the top right of MetaMask and click "Import Account". This will bring you to a page where MetaMask asks for a Private key to import an account.
 
-* In Ganache, find the key icon that is to the right of the first account and click on it. Copy the Private Key as shown below. 
-![Ganache 1]("C:\Users\thoma\Bootcamp\Project-3\Images\Ganache 1.png")
-![Ganache 2]("C:\Users\thoma\Bootcamp\Project-3\Images\Adding a MM Account.png")
+![Circle in Metamask](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Circle%20in%20MM.png)
 
-* Paste private key into the section in MetaMask and hit "Import". MetaMask will then import this Ganache Account. For the purpose of this exercise, we have renamed the accounts for similicity. By clicking on the three dots next to "Account X", click on "Account Details" and rename the account. We have named them as "G Acc X" as shown below. 
-![Ganache 3]("C:\Users\thoma\Bootcamp\Project-3\Images\Import Ganache Acc.png")
+- In Ganache, find the key icon that is to the right of the first account and click on it. Copy the Private Key as shown below. 
+
+![Ganache 1](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Ganache%201.png)
+
+![Ganache 2](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Adding%20a%20MM%20Account.png)
+
+- Paste private key into the section in MetaMask and hit "Import". MetaMask will then import this Ganache Account. For the purpose of this exercise, we have renamed the accounts for similicity. By clicking on the three dots next to "Account X", click on "Account Details" and rename the account. We have named them as "G Acc X" as shown below. 
+
+![Ganache 3](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Import%20Ganache%20Acc.png)
 
 3. Import Tokens (CCD)
-* Once MetaMask has been loaded with your Genache accounts, its now time to import CarbonCred tokens (CCD). 
-* To do this, first open the solidity code file in Remix. Compile and deploy contract and check for the green tick at the bottom of the page as shown below:
+- Once MetaMask has been loaded with your Genache accounts, its now time to import CarbonCred tokens (CCD). 
+- To do this, first open the solidity code file in Remix. Compile and deploy contract and check for the green tick at the bottom of the page as shown below:
+- Once the contract has been deployed in Remix, on the lefthand side of Remix, the contract will now show under deployed contract. Click on the copy button below the "Deployed Contact" title as seen below. This is will allow for linking the smart contract with MetaMask and Genache. 
 
-* Once the contract has been deployed in Remix, on the lefthand side of Remix, the contract will now show under deployed contract. Click on the copy button below the "Deployed Contact" title as seen below. This is will allow for linking the smart contract with MetaMask and Genache. 
-![RemixCode]("C:\Users\thoma\Bootcamp\Project-3\Images\Remix Code.png")
-* The next step will need to be completed for each of your Genache accounts in MetaMask. First, click on "Import Tokens" shown below. 
-![Import Tokens]("C:\Users\thoma\Bootcamp\Project-3\Images\Import tokens 1.png")
-* Paste the previous copied Solidity Contract Address that was copied from Remix into the first box. Type "CCD" for CarbonCredit into the token symbol box. Leave Token Decimal blank and then click Add Custom Token.
-![Import Tokens 2]("C:\Users\thoma\Bootcamp\Project-3\Images\Import tokens 2.png")
-![Import Tokens 3]("C:\Users\thoma\Bootcamp\Project-3\Images\Import tokens 3.png")
-* You should now see CCD in your respective account. It is important you replicate these steps for Importing Tokens (CCD) for each account within your MetaMask as this will help keep record of which account holds how many CCDs. 
-![Import Tokens 4]("C:\Users\thoma\Bootcamp\Project-3\Images\Import tokens 4.png")
+![RemixCode](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Remix%20Code.png)
 
+- The next step will need to be completed for each of your Genache accounts in MetaMask. First, click on "Import Tokens" shown below. 
 
-### Setting up LogIn Credentials for CarbonCred site
+![Import Tokens](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Import%20tokens%201.png)
+
+- Paste the previous copied Solidity Contract Address that was copied from Remix into the first box. Type "CCD" for CarbonCredit into the token symbol box. Leave Token Decimal blank and then click Add Custom Token.
+
+![Import Tokens 2](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Import%20tokens%202.png)
+
+![Import Tokens 3](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Import%20tokens%203.png)
+
+- You should now see CCD in your respective account. It is important you replicate these steps for Importing Tokens (CCD) for each account within your MetaMask as this will help keep record of which account holds how many CCDs. 
+
+![Import Tokens 4](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Images/Import%20tokens%204.png)
+
+<ins>Setting up LogIn Credentials for CarbonCred Site</ins>
+
 Both streamlit apps require the use of a username and password for the validation process. To set up the validation process, create a login details in the secrets.toml file using the same layout as demonstrated below. To run this code, it is not essentual as you can use the existing login details, however it is good practice. 
 
+[Back to Table of Contents](#Table-of-Contents)
 
-### Minting of Carbon Credits
+### Minting of CarbCreds
 
-`insert meat of the project here`
+[Minting Screen Capture video](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Videos/Minting_Screencapture.mov)
 
-### Buying Carbon Credits from Government
+### Trading CarbCreds 
 
-`insert meat of the project here`
+[Transfer Screen Capture Video](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Videos/Transfer_Screen_Capture.mov)
 
-### Trading Carbon Credits between companies
+### Voting on CarbCred Transactions
 
-`insert meat of the project here`
+In blockchain-based applications, activities might need to be authorised by multiple blockchain addresses. A transaction could indicate multi-party authorisation using a digital signature scheme that allows a group of addresses to sign the transaction. Such a signature is known as a multisignature. Depending on the chosen multisignature algorithm, we can enforce that the transaction is signed by all or a subset of the authorised addresses. A multisignature mechanism can be designed to require m out of n private keys to authorise a transaction, in which m is the threshold of authorisation (2 ≤ m ≤ n). A smart contract’s owner/manager can pre-define a group of addresses that can authorise a transaction and set the minimal number of authorisations required to approve a payment. [<sup>4</sup>](#reference-list)
 
-### Voting on Carbon Credit Transactions
+This project has explored the use of [Multi-signature contract](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Code/Contracts/5-11%20Multisig%20wallet.sol) as a meants of voting on the approval of transactions. Enabling companies to vote on transactions for CarbCreds can helo to protect them from corporate espionage and financial fraud.
 
-`insert meat of the project here`
+Below are some iamges of the contract functioning.
+
+<ins>Compiled without Errors</ins>
+
+![Compiled](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_compiled.PNG)
+
+This contract was compiled using 0.5.17+commit.d19bba13 with no errors.
+
+<ins>Assigned Addresses and Approvals Required</ins>
+
+![Assigned Addresses and Approvals Required](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_assign_owners_and_2ApprovalsRequired.PNG)
+
+For this demontration, 2 factors were indicated when deploying the contract:
+
+1. Multiple address (owners). For the demonstration, 3 addresses were chosen.
+2. Number of approvals required for the transaction to execute. For the demonstration, 2 (the majority) was indicated.
+
+<ins>Deposit Function Working</ins>
+
+![Deposit Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_Deposit_function_working.PNG)
+
+We successfully deposited 1 ether into the cotnract.
+
+<ins>Submit Transaction Function Working</ins>
+
+![Submit Transaction Function Working]https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_submitTransaction_working.PNG)
+
+The submitTransaction function was used to submit a transfer of the 1 ether to an address outside of the Multi-signature contract.
+
+<ins>Display Amount of Approvals Required Working</ins>
+
+![Call Amount of Approvals Required Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_display_approvalRequired.PNG)
+
+The call shows that 2 approvals are required for the transaction to execute.
+
+<ins>Approve Transaction Function Working</ins>
+
+![Approve Transaction Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_ApproveTransaction_working.PNG)
+
+One of the assigned addresses was used to approve the transaction.
+
+<ins>Call to Check if an Owner has Approved a Transaction Working</ins>
+
+![Call to Check if an Owner has Approved a Transaction Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_isApproved_working.PNG)
+
+The call shows which address was used and confirmed that approval has been given by this address (true).
+
+<ins>Revoke Approval of Transaction Function Working</ins>
+
+![Revoke Approval of Transaction Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_RevokeApproval_working.PNG)
+
+The Revoke approval function is working and approval was then regiven by the same address.
+
+<ins>Execute Transaction after Aprovals Function Working</ins>
+
+![Execute Transaction after Aprovals Function Working](https://github.com/RPSangil/Project-3/blob/8613b3c4d47a519826e0c220c326bbbb1902ce77/Images/5_11_MSG_ExecuteTransaction_working.PNG)
+
+Once enough approval were made, the transaction was able to execute.
 
 [Back to Table of Contents](#Table-of-Contents)
 
 ## Future Opportunities Given Time and Resources
 
-`insert list of potential next steps for the project`
+Given more time, the project would have explored and implemented a front end python application that would enable users to use the Multi-Signature Contract for trading CarbCreds.
 
-`insert additional questions to research if given more time`
+Areas this project could explore in the future would be:
+
+- Implementation of carbon capture and consumption protocols in line with future legislation.
+- An auditing system to be used by governing parties to enforce and monitor there protocols.
+- Further implementation of a decentralised system.
+- An automated balancing of company net zero.
 
 ### Useful Resources for Future Develpoment
 
@@ -133,6 +200,11 @@ Both streamlit apps require the use of a username and password for the validatio
 - [<sup>1</sup> COP26: What was agreed at the Glasgow climate conference?](https://www.bbc.com/news/science-environment-56901261)
 - [<sup>2</sup> Australia Welcomes Positive Outcomes at COP26 ](https://www.minister.industry.gov.au/ministers/taylor/media-releases/australia-welcomes-positive-outcomes-cop26)
 - [<sup>3</sup> Climate Solutions Fund: How you can benefit](https://www.cleanenergyregulator.gov.au/csf/how-you-can-benefit/Pages/how-you-can-benefit.aspx#:~:text=By%20running%20a%20project%2C%20you,gas%20emissions%20stored%20or%20avoided)
+- [<sup>4</sup> CSIRO: Multiple Authorisation (aka., Multisignature)](https://research.csiro.au/blockchainpatterns/general-patterns/security-patterns/multiple-authorization/)
+- [Image used in Minting App Source](https://unsplash.com/photos/-SO3JtE3gZo)
+- [Passwords Code Source](https://docs.streamlit.io/knowledge-base/deploy/authentication-without-sso)
+- [Multi-Sig Wallet Code Source](https://solidity-by-example.org/app/multi-sig-wallet/)
+- [Image for Transfer App Source]()
 
 [Back to Table of Contents](#Table-of-Contents)
 
