@@ -103,11 +103,11 @@ Both streamlit apps require the use of a username and password for the validatio
 
 https://user-images.githubusercontent.com/101629446/187858890-c87342a7-754f-4282-86fc-2c52a1cb6e39.mov
 
-[Minting Screen Capture video](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Videos/Minting_Screencapture.mov)
+If for any reason this video does not work, please see [Minting Screen Capture video](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Videos/Minting_Screencapture.mov) for a place to download the video.
 
 ### Trading CarbCreds 
 
-[Transfer Screen Capture Video](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Videos/Transfer_Screen_Capture.mov)
+Please see here for where to download [Transfer Screen Capture Video](https://github.com/RPSangil/Project-3/blob/cfd6525dfebabf177867e50dc5dd50f1a6483210/Videos/Transfer_Screen_Capture.mov).
 
 ### Voting on CarbCred Transactions
 
